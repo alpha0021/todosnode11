@@ -6,7 +6,7 @@
   mongoose.Promise = global.Promise;
   
  //-mongoose.connect('mongodb://test:test@ds153710.mlab.com:53710/test01');
- mongoose.connect('mongodb://test:test@ds155080.mlab.com:55080/todolist');
+ mongoose.connect('mongodb://test1:test1@ds155080.mlab.com:55080/todolist');
   
   //create a schema - this is like a blueprint
   
@@ -24,13 +24,10 @@
   	console.log('item saved');
   });
   */
+ //var data =  [{item:"get millk"},{item:"make tea"},{item:"serve  to piash  vai"}];
+var urlencodedParser =bodyParser.urlencoded({extended:false});
  
- 
-  //var data =  [{item:"get millk"},{item:"make tea"},{item:"serve  to piash  vai"}];
-  
-  var urlencodedParser =bodyParser.urlencoded({extended:false});
- 
- module.exports = function(app){
+module.exports = function(app){
  
  	app.get('/todo',function(req,res){
 
@@ -46,12 +43,14 @@
  
  	app.post('/todo',urlencodedParser,function(req,res){
 		//get data  from the mongo and pass it to  view
-		var newTodo = Todo(req.body).save(function(err){
+		var newTodo = Todo(req.body).save(function(err,data){
  			if (err) throw err;
  			res.json(data);
+
  		});
 		//data.push(req.body);
  		//res.json(data);
+    console.log("got the point");
  	});
  
  	app.delete('/todo/:item',function(req,res){
@@ -67,5 +66,5 @@
  		res.json(data);*/
  	});
  
- 
+}; 
  
