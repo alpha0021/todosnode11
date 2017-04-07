@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 //connect to the database
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://test:test@ds153710.mlab.com:53710/test01');
+mongoose.connect('mongodb://test:test@ds155080.mlab.com:55080/todolist');
 
 //create a schema - this is like a blueprint
 
@@ -22,6 +22,8 @@ var itemOne = Todo({item:'say hi to piash vai'}).save(function(err){
 	if (err) throw err;
 	console.log('item saved');
 });
+
+
 
 var data =  [{item:"get millk"},{item:"make tea"},{item:"serve  to piash  vai"}];
 
